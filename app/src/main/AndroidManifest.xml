@@ -11,6 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Assignment01">
+
+        <!-- ✅ AboutActivity declaration -->
+        <activity
+            android:name=".AboutActivity"
+            android:label="About"
+            android:parentActivityName=".MainActivity">
+            <!-- This ensures the ActionBar back arrow knows where to go -->
+        </activity>
+
+        <!-- ✅ MainActivity is still your launcher activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -18,10 +28,10 @@
             android:theme="@style/Theme.Assignment01">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

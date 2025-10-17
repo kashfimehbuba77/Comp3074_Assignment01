@@ -1,47 +1,57 @@
 package com.example.assignment01
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.assignment01.ui.theme.Assignment01Theme
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            Assignment01Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+        setContentView(R.layout.activity_main)
+
+        val etHours = findViewById<EditText>(R.id.etHours)
+        val etRate = findViewById<EditText>(R.id.etRate)
+        val etTax = findViewById<EditText>(R.id.etTax)
+        val btnCalculate = findViewById<Button>(R.id.btnCalculate)
+        val btnAbout = findViewById<Button>(R.id.btnAbout)
+        val tvResult = findViewById<TextView>(R.id.tvResult)
+
+        btnCalculate.setOnClickListener {
+            val hours = etHours.text.toString().toDoubleOrNull() ?: 0.0
+            val rate = etRate.text.toString().toDoubleOrNull() ?: 0.0
+            val taxRate = etTax.text.toString().toDoubleOrNull() ?: 0.0
+
+            val pay: Double
+            val overtimePay: Double
+
+            if (hours <= 40) {
+                pay = hours * rate
+                overtimePay = 0.0
+            } else {
+                pay = 40 * rate
+                overtimePay = (hours - 40) * rate * 1.5
             }
+
+            val totalPay = pay + overtimePay
+            val tax = pay * taxRate
+
+            val result = """
+                Pay: $${"%.2f".format(pay)}
+                Overtime Pay: $${"%.2f".format(overtimePay)}
+                Total Pay: $${"%.2f".format(totalPay)}
+                Tax: $${"%.2f".format(tax)}
+            """.trimIndent()
+
+            tvResult.text = result
         }
-    }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Assignment01Theme {
-        Greeting("Android")
+        btnAbout.setOnClickListener {
+            val intent = Intent(this, AboutActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
