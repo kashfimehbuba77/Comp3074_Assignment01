@@ -1,48 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:gravity="center_horizontal"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:padding="16dp">
 
-    <EditText
-        android:id="@+id/etHours"
-        android:hint="Enter hours worked"
-        android:inputType="numberDecimal"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
 
-    <EditText
-        android:id="@+id/etRate"
-        android:hint="Enter hourly rate"
-        android:inputType="numberDecimal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/etHours"
+            android:hint="Enter hours worked"
+            android:inputType="numberDecimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
 
-    <EditText
-        android:id="@+id/etTax"
-        android:hint="Enter tax rate (e.g. 0.15)"
-        android:inputType="numberDecimal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/etRate"
+            android:hint="Enter hourly rate"
+            android:inputType="numberDecimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
 
-    <Button
-        android:id="@+id/btnCalculate"
-        android:text="Calculate Pay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/etTax"
+            android:hint="Enter tax rate (e.g. 0.15)"
+            android:inputType="numberDecimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp" />
 
-    <Button
-        android:id="@+id/btnAbout"
-        android:text="About"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btnCalculate"
+            android:text="Calculate Pay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
 
-    <TextView
-        android:id="@+id/tvResult"
-        android:textSize="18sp"
-        android:paddingTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+        <Button
+            android:id="@+id/btnAbout"
+            android:text="About"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/tvResult"
+            android:textSize="18sp"
+            android:padding="8dp"
+            android:background="#F3F3F3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pay: $0.00\nOvertime Pay: $0.00\nTotal Pay: $0.00\nTax: $0.00" />
+
+    </LinearLayout>
+</ScrollView>
